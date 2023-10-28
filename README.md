@@ -1,8 +1,12 @@
-# Local deploy 
+## Getting Started
 
-Run
-```
+1. Running 
+``` dart
+flutter clean
 flutter pub get
-flutter pub run build_runner build
-flutter pub run flutter_gen:flutter_gen_command
+```
+
+2. Generate models freezed 
+``` dart
+flutter pub run build_runner build --delete-conflicting-outputs
 ```
