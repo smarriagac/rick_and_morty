@@ -1,3 +1,4 @@
+import '../modules/details/view/details_view.dart';
 import 'package:flutter/widgets.dart' show BuildContext, Widget;
 
 import '../modules/character/view/character_view.dart';
@@ -17,5 +18,9 @@ Map<String, Widget Function(BuildContext)> get appRoutes {
     Routes.CHARACTER: (_) => const CharacterView(),
     Routes.LOCATION: (_) => const LocationView(),
     Routes.EPISODE: (_) => const EpisodeView(),
-  };
+  
+    Routes.DETAILS: (_) => const DetailsView(),
+};
 }
+
+        

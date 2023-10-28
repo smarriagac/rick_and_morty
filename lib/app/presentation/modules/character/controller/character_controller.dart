@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../../../domain/repositories/character_repository.dart';
@@ -22,11 +20,17 @@ class CharacterController extends StateNotifier<CharacterState> {
 
   final CharacterRepository _characterRepository;
 
+  CharacterStateLoaded get characterState => state.maybeMap(
+        loaded: (state) => state,
+        orElse: () => throw Exception(
+          'value is not an instance of CharacterStateLoaded',
+        ),
+      );
+
   Future init({
     int page = 1,
     String status = '',
   }) async {
-    log(status);
     state = const CharacterState.loading();
     final resultApi = await _characterRepository.characterSend(
       page: page,
@@ -34,7 +38,37 @@ class CharacterController extends StateNotifier<CharacterState> {
     );
     state = resultApi.when(
       left: (failure) => const CharacterState.failed(),
-      right: (value) => CharacterState.loaded(value),
+      right: (resulCharacter) => CharacterState.loaded(
+        page: page,
+        totalPageAmount: resulCharacter.info.pages,
+        characters: resulCharacter.results,
+      ),
+    );
+    // log('$resultApi');
+  }
+
+  Future pagination({
+    int page = 1,
+    String status = '',
+  }) async {
+    if (page >= characterState.totalPageAmount) {
+      return;
+    }
+
+    final resultApi = await _characterRepository.characterSend(
+      page: page,
+      status: status,
+    );
+    state = resultApi.when(
+      left: (failure) => const CharacterState.failed(),
+      right: (resulCharacter) => characterState.copyWith(
+        page: page,
+        totalPageAmount: resulCharacter.info.pages,
+        characters: [
+          ...characterState.characters,
+          ...resulCharacter.results,
+        ],
+      ),
     );
     // log('$resultApi');
   }

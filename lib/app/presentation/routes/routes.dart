@@ -7,4 +7,4 @@ abstract class Routes {
   static const CHARACTER = '/character';
   static const LOCATION = '/location';
   static const EPISODE = '/episode';
-}
+static const DETAILS = '/details';}

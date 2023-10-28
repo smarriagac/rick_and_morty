@@ -6,21 +6,21 @@ part of 'episodes_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_EpisodesModel _$$_EpisodesModelFromJson(Map<String, dynamic> json) =>
-    _$_EpisodesModel(
+_$EpisodesModelImpl _$$EpisodesModelImplFromJson(Map<String, dynamic> json) =>
+    _$EpisodesModelImpl(
       info: Info.fromJson(json['info'] as Map<String, dynamic>),
       results: (json['results'] as List<dynamic>)
           .map((e) => Result.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_EpisodesModelToJson(_$_EpisodesModel instance) =>
+Map<String, dynamic> _$$EpisodesModelImplToJson(_$EpisodesModelImpl instance) =>
     <String, dynamic>{
       'info': instance.info,
       'results': instance.results,
     };
 
-_$_Result _$$_ResultFromJson(Map<String, dynamic> json) => _$_Result(
+_$ResultImpl _$$ResultImplFromJson(Map<String, dynamic> json) => _$ResultImpl(
       id: json['id'] as int,
       name: json['name'] as String,
       airDate: json['air_date'] as String,
@@ -32,7 +32,8 @@ _$_Result _$$_ResultFromJson(Map<String, dynamic> json) => _$_Result(
       created: DateTime.parse(json['created'] as String),
     );
 
-Map<String, dynamic> _$$_ResultToJson(_$_Result instance) => <String, dynamic>{
+Map<String, dynamic> _$$ResultImplToJson(_$ResultImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'air_date': instance.airDate,

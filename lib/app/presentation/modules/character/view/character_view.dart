@@ -33,10 +33,13 @@ class CharacterView extends HookConsumerWidget {
         ),
         const SizedBox(height: 10),
         Expanded(
-          child: value.when(
-            loading: () => const Center(child: CircularProgressIndicator()),
-            failed: () => const Center(child: Icon(Icons.question_answer)),
-            loaded: (data) => BodyCharger(listResult: data.results),
+          child: value.map(
+            loading: (_) => const Center(child: CircularProgressIndicator()),
+            failed: (_) => const Center(child: Icon(Icons.question_answer)),
+            loaded: (state) => BodyCharger(
+              listResult: state.characters,
+              status: valueStatus.value.name,
+            ),
           ),
         ),
       ],
