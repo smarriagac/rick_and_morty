@@ -1,0 +1,24 @@
+{
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.organizeImports": true,
+    },
+    "editor.fontLigatures": false,
+    "command-runner.commands":{
+        "pub_get":"flutter pub get",
+      "build_runner": "flutter pub run build_runner build",  
+      "build_runner_d": "flutter pub run build_runner build --delete-conflicting-outputs",  
+      "flutter_gen": "flutter pub run flutter_gen:flutter_gen_command",  
+    },
+    "conventionalCommits.scopes": [
+        "login"
+    ],
+      //Eliminar archivos .fvm de búsqueda
+  "search.exclude": {
+    "**/.fvm": true
+  },
+  // Eliminar de la observación de archivos
+  "files.watcherExclude": {
+    "**/.fvm": true
+  }
+}
